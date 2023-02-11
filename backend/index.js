@@ -7,6 +7,7 @@ const morgan = require("morgan");
 const cors = require('cors')
 const bodyParser = require('body-parser');
 const authRoute = require("./routes/auth");
+const userRoute = require("./routes/users");
 
 dotenv.config();
 
@@ -31,6 +32,7 @@ app.use(helmet());
 app.use(morgan("common"));
 
 app.use("/api/auth", authRoute);
+app.use("/api/users", userRoute);
 
 app.listen(8800, () => {
   console.log("Backend server is running!");
