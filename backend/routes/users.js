@@ -54,4 +54,20 @@ router.delete("/:id", async (req, res) => {
     }
 });
 
+//get friend list 
+router.get("/friends/:userId", async (req, res) => {
+    const user = await User.findById(req.params.userId);
+    const friends = await Promise.all(
+        user.followings.map(id => {
+            return User.findById(id);
+        })
+    )
+    let friendList = [];
+    friends.map(friend => {
+        const {_id, profilePicture, username} = friend;
+        friendList.push({_id, profilePicture, username})
+    })
+    res.status(200).json(friendList);
+})
+
 module.exports = router;
