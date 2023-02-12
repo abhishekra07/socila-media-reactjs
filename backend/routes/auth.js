@@ -2,7 +2,9 @@ const router = require("express").Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 
-//REGISTER
+/**
+ * REGISTER API
+ */
 router.post("/register", async (req, res) => {
     try {
         //generate new password
