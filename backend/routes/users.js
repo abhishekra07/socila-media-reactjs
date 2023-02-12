@@ -66,7 +66,9 @@ router.delete("/:id", async (req, res) => {
     }
 });
 
-//get friend list 
+/**
+ * get friend list 
+ */
 router.get("/friends/:userId", async (req, res) => {
     const user = await User.findById(req.params.userId);
     const friends = await Promise.all(
