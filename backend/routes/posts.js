@@ -15,7 +15,9 @@ router.post("/", async (req, res) => {
     }
 });
 
-//update a post
+/**
+ * update a post
+ */
 router.put("/:id", async (req, res) => {
     try {
       const post = await Post.findById(req.params.id);
