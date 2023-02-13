@@ -69,7 +69,9 @@ router.put("/:id/like", async (req, res) => {
     }
   });
 
-//get a post
+/**
+ * get a post
+ */
 router.get("/:id", async (req, res) => {
     try {
       const post = await Post.findById(req.params.id);
