@@ -4,10 +4,13 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const helmet = require("helmet");
 const morgan = require("morgan");
-const cors = require('cors')
-const bodyParser = require('body-parser');
-const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
+const authRoute = require("./routes/auth");
+const postRoute = require("./routes/posts");
+const cors = require('cors')
+const multer = require('multer');
+const path = require('path')
+const bodyParser = require('body-parser');
 
 dotenv.config();
 
@@ -36,6 +39,15 @@ app.use(helmet());
 app.use(morgan("common"));
 
 app.use("/images", express.static(path.join(__dirname, 'public/images')))
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'public/images');
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  }
+})
 
 
 app.use("/api/auth", authRoute);
