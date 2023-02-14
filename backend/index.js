@@ -35,6 +35,9 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
 
+app.use("/images", express.static(path.join(__dirname, 'public/images')))
+
+
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
